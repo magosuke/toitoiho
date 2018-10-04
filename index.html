@@ -144,6 +144,13 @@
             作曲をしています。ゲームオーケストラとゲームＥＤＭがメインです。
             <a href="music.html">音楽へ</a>
         </p>
+
+	<form name="js">
+	お名前:<>input type="text" name="txtb" value=""><br>
+	<input type="button" value="歓迎" onclick="tbox1()"><br>
+	<input type="button" value="消去" onclick="clr()"><br>
+	</form>
+
         <h2><a href="illusts.html">イラスト</a></h2>
         <p>
             お絵かきをしています。ケモノが大好きです。
@@ -154,5 +161,16 @@
         <address>Copyright (C) もんぶらん</address>
     </div>
 </body>
+
+<script>
+	function tbox1(){
+		var str1 = document.js.txtb.value;
+		alert("ようこそ"+str1+"さん！");
+	}
+
+	function clear(){
+		document.js.txtb.value = "";
+	}
+</script>
 
 </html>
