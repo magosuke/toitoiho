@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<meta http-equiv="content-type" charset="utf-8">
+
+<html>
+
+<head>
+    <title>兎々和</title>
+    <style type="text/css">
+        body {
+            margin-top: 50px;
+            background: #202e38;
+            color: #bde1fa;
+        }
+        
+        div.detail {
+            width: 70%;
+            /*border-top-width: 5px;
+            border-top-style: solid;
+            border-top-color: rgb(36, 80, 83);*/
+            /*border-right-width: 5px;
+            border-right-style: solid;
+            border-right-color: rgb(36, 80, 83);*/
+            /*border-bottom-width: 5px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(36, 80, 83);*/
+            /*border-left-width: 5px;
+            border-left-style: solid;
+            border-left-color: rgb(36, 80, 83);*/
+            margin: 30px auto;
+        }
+        
+        div.menu {
+            width: 70%;
+            height: 30px;
+            background-color: rgb(86, 130, 133);
+            border-top-width: 5px;
+            border-top-style: solid;
+            border-top-color: rgb(86, 130, 133);
+            border-right-width: 5px;
+            border-right-style: solid;
+            border-right-color: rgb(86, 130, 133);
+            border-bottom-width: 5px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(86, 130, 133);
+            border-left-width: 5px;
+            border-left-style: solid;
+            border-left-color: rgb(86, 130, 133);
+            margin: auto;
+            margin-bottom: 50px;
+        }
+        
+        div.underLine {
+            width: 70%;
+            height: 30px;
+            background-color: rgb(86, 130, 133);
+            border-top-width: 5px;
+            border-top-style: solid;
+            border-top-color: rgb(86, 130, 133);
+            border-right-width: 5px;
+            border-right-style: solid;
+            border-right-color: rgb(86, 130, 133);
+            border-bottom-width: 5px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(86, 130, 133);
+            border-left-width: 5px;
+            border-left-style: solid;
+            border-left-color: rgb(86, 130, 133);
+            margin: auto;
+            margin-top: 50px;
+            color: rgb(44, 60, 61);
+        }
+        
+        div.img {
+            border-left: 10px;
+            border-right: 10px;
+            background-color: rgb(255, 60, 61);
+        }
+        
+        h1 {
+            margin-left: 10px;
+        }
+        
+        h2 {
+            margin-left: 15px;
+            margin-right: 15px;
+            padding-left: 10px;
+            border-left: 5px solid rgb(86, 130, 133);
+            border-bottom: 2px solid rgb(86, 130, 133);
+        }
+        
+        h3 {
+            margin-left: 15px;
+            margin-right: 15px;
+            padding-left: 10px;
+            border-left: 3px solid rgb(86, 130, 133);
+            border-bottom: 1px solid rgb(86, 130, 133);
+        }
+        
+        p {
+            margin-left: 15px;
+            margin-right: 15px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        address {
+            margin-bottom: 10px;
+            font-style: normal;
+            text-align: center;
+        }
+        
+        a:link {
+            color: #3bb13b
+        }
+        
+        a:visited {
+            color: #c23ec2
+        }
+        
+        a:hover {
+            color: #50ff50
+        }
+        
+        a:active {
+            color: #fffc50
+        }
+    </style>
+</head>
+
+<style>
+  .thumb {
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+</style>
+
+<input type="file" id="files" name="files[]" multiple />
+<output id="list"></output>
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
